@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
+
+
+scope "/api" do
   resources :taggings, except: [:new, :edit]
   resources :tags, except: [:new, :edit]
   resources :notes, except: [:new, :edit]
-
-  get '/api/notes'
-  post 'api/notes'
-  get '/api/notes/tag/funny'
+end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
