@@ -8,7 +8,10 @@ end
 def create
   @note = Note.new(note_params)
   if @note.save!
-    params.tags.split(',')
+    params[:notes][:tags].split(',').each do |t|
+      to_add = Tag.find_or_initialize_by(name: t.strip)
+      @note.tags << to_add
+    end
     render json: @notes
   else
     render json: @notes.errors, status: 400
